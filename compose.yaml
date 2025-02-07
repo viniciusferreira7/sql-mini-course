@@ -1,17 +1,29 @@
 services:
-  mysql:
-    image: mysql:8.0
-    container_name: mysql_container
+  sql-mini-course:
+    container_name: sql-mini-course-container
+    image: bitnami/postgresql:17.2.0
+    ports:
+      - 5432:5432
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: rootpassword
-      MYSQL_DATABASE: mydatabase
-      MYSQL_USER: myuser
-      MYSQL_PASSWORD: mypassword
-    ports:
-      - "3306:3306"
+      POSTGRESQL_USERNAME: docker
+      POSTGRESQL_PASSWORD: docker
+      POSTGRESQL_DATABASE: sqlminicourse
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d postgres"]
+      interval: 5s
+      timeout: 2s
+      retries: 20
+
+    networks:
+      - sql_mini_course
+
     volumes:
-      - mysql_data:/var/lib/mysql
+      - sql_mini_course_data:/bitnami/postgresql
+
+networks:
+  sql_mini_course:
+    driver: bridge
 
 volumes:
-  mysql_data:
+  sql_mini_course_data:
