@@ -79,3 +79,45 @@ VALUES
 -- SELECT
 
 SELECT * FROM brands;
+
+SELECT id, price, name FROM products WHERE id > 5;
+
+------------------------------------------->
+
+-- INSERT with SELECT
+
+CREATE TABLE apple_products (
+  name VARCHAR(120) NOT NULL UNIQUE,
+  amount INTEGER DEFAULT 0
+);
+
+INSERT INTO brands (name, website, phone) 
+VALUES
+  ('Adidas', 'https://apple.com', '1188888-8888');
+
+DROP TABLE IF EXISTS app_products;
+
+INSERT INTO brands (name, website, phone)
+VALUES 
+  ('Apple', 'https://apple.com', '1156828-9858')
+
+SELECT * FROM brands;
+
+INSERT INTO products (name, price, amount, brand_id)
+VALUES 
+  ('iPhone 15 Pro', 999.99, 30, 10),
+  ('MacBook Air M2', 1199.99, 20, 10),
+  ('iPad Pro 12.9"', 1099.99, 25, 10),
+  ('Apple Watch Ultra 2', 799.99, 15, 10),
+  ('AirPods Pro 2', 249.99, 50, 10),
+  ('Apple Vision Pro', 3499.99, 10, 10),
+  ('Magic Keyboard', 149.99, 40, 10),
+  ('Apple Pencil 2', 129.99, 35, 10),
+  ('HomePod Mini', 99.99, 45, 10);
+
+SELECT * FROM products;
+
+INSERT INTO  apple_products 
+SELECT name, amount FROM products WHERE brand_id = 10;
+
+SELECT * FROM apple_products;
