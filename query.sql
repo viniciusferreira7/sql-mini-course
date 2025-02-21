@@ -121,3 +121,34 @@ INSERT INTO  apple_products
 SELECT name, amount FROM products WHERE brand_id = 10;
 
 SELECT * FROM apple_products;
+
+TRUNCATE TABLE apple_products;
+
+DROP TABLE iF EXISTS apple_products;
+
+----------------------------------------------->
+
+-- UPDATE
+
+SELECT * FROM products;
+
+UPDATE products 
+SET name = 'Mackbook M3 pro'
+WHERE id = 17;
+
+UPDATE products
+SET amount = amount + 10;
+
+UPDATE products
+SET amount = amount - 10
+WHERE brand_id = 10;
+
+----------------------------------------------------->
+
+--DELETE
+
+SELECT * FROM products;
+
+
+DELETE FROM products
+WHERE id = 2;
