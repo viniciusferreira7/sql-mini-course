@@ -133,7 +133,7 @@ DROP TABLE iF EXISTS apple_products;
 SELECT * FROM products;
 
 UPDATE products 
-SET name = 'Mackbook M3 pro'
+SET name = 'MacBook M3 pro'
 WHERE id = 17;
 
 UPDATE products
@@ -149,6 +149,58 @@ WHERE brand_id = 10;
 
 SELECT * FROM products;
 
-
 DELETE FROM products
 WHERE id = 2;
+
+----------------------------------------------------->
+
+-- advanced SELECT
+
+SELECT * 
+FROM products;
+
+SELECT * 
+FROM products
+WHERE amount < 20;
+
+SELECT * 
+FROM products
+WHERE amount > 50;
+
+SELECT * 
+FROM products
+WHERE amount <> 35;
+
+SELECT * 
+FROM products
+WHERE amount > 20
+  AND price > 1000;
+
+
+SELECT * 
+FROM products
+WHERE 
+      name LIKE 'MacBook%';
+
+SELECT * 
+FROM products
+WHERE 
+      name LIKE '%2';
+
+SELECT * 
+FROM products
+WHERE 
+      name LIKE '%Pro%';
+
+SELECT *
+FROM products
+ORDER BY price ASC;
+
+SELECT *
+FROM products
+ORDER BY price DESC;
+
+SELECT *
+FROM products
+ORDER BY price DESC
+LIMIT 7;
