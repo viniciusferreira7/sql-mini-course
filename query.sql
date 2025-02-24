@@ -204,3 +204,53 @@ SELECT *
 FROM products
 ORDER BY price DESC
 LIMIT 7;
+
+-------------------------------->
+
+-- Creation of new tables
+-- CLIENTS
+CREATE TABLE clients (
+  id SERIAL PRIMARY KEY , 
+  name VARCHAR(100) NOT NULL, 
+  email VARCHAR(100) UNIQUE NOT NULL, 
+  city VARCHAR(200), 
+  birthday TIMESTAMP
+);
+
+-- ORDERS
+CREATE TABLE orders (
+  id SERIAL PRIMARY KEY,
+  created_at TIMESTAMP DEFAULT NOW(),
+  client_id INTEGER,
+  total REAL,
+  FOREIGN KEY (client_id) REFERENCES clients(id)
+);
+
+-- ORDERS ITENS
+CREATE TABLE order_itens (
+  order_id INTEGER,
+  product_id INTEGER,
+  amount INTEGER,
+  unit_price REAL,
+  FOREIGN KEY (order_id) REFERENCES orders(id), 
+  FOREIGN KEY (product_id) REFERENCES products(id), 
+  PRIMARY KEY (order_id, product_id)
+);
+
+DROP TABLE IF EXISTS order_itens;
+
+INSERT INTO clients (name, email, city) VALUES
+('João Pereira', 'joao@exemplo.com.br', 'Rio de Janeiro'),
+('Ana Costa', 'ana@costa.com', 'São Paulo'),
+('Carlos Souza', 'carlos@gmail.com', 'Belo Horizonte'),
+('Vanessa Weber', 'vanessa@codigofonte.tv', 'São José dos Campos'),
+('Gabriel Fróes', 'gabriel@codigofonte.tv', 'São José dos Campos');
+
+INSERT INTO orders (client_id, total) VALUES
+(1, 5500.00),
+(2, 2000.00);
+
+INSERT INTO order_itens (order_id, product_id, amount, unit_price) VALUES
+(1, 1, 1, 3500.00),
+(1, 3, 1, 2000.00),
+(2, 5, 1, 2000.00);
