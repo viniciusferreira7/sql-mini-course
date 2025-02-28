@@ -254,3 +254,69 @@ INSERT INTO order_itens (order_id, product_id, amount, unit_price) VALUES
 (1, 1, 1, 3500.00),
 (1, 3, 1, 2000.00),
 (2, 5, 1, 2000.00);
+
+----------------------------------------->
+
+-- INNER JOIN / OPERADOR IN
+
+SELECT 
+  clients.name,
+  orders.total
+FROM 
+  clients
+  INNER JOIN orders ON clients.id = orders.id;
+
+------------------------------------------->
+
+-- SUBQUERY
+
+SELECT
+  name, price
+FROM 
+  products
+WHERE brand_id IN (SELECT id FROM brands WHERE name = 'Apple' OR name = 'Adidas');
+
+-------------------------------------------->
+
+-- LEFT, JOIN / RIGHT JOIN / FULL / UNION
+
+SELECT 
+  c.name,
+  o.total
+FROM 
+  clients c
+  LEFT JOIN orders o ON o.client_id = c.id;
+
+SELECT 
+  c.name,
+  o.total
+FROM 
+  clients c
+  RIGHT JOIN orders o ON o.client_id = c.id;
+
+SELECT 
+  c.name,
+  o.total
+FROM 
+  clients c
+  FULL JOIN orders o ON o.client_id = c.id;
+
+SELECT 
+  c.name,
+  o.total
+FROM 
+  clients c
+  LEFT JOIN orders o ON o.client_id = c.id
+
+UNION
+
+SELECT 
+  c.name,
+  o.total
+FROM 
+  clients c
+  RIGHT JOIN orders o ON o.client_id = c.id;
+
+---------------------------------------------->
+
+-- AGGREGATE FUNCTIONS AND DATA AGGREGATION
