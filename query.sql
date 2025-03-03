@@ -320,3 +320,37 @@ FROM
 ---------------------------------------------->
 
 -- AGGREGATE FUNCTIONS AND DATA AGGREGATION
+
+SELECT
+  clients.city AS City,
+  COUNT(*) AS Amount_clients 
+FROM clients
+GROUP BY city;
+
+SELECT
+  TO_CHAR(created_at, 'DD/MM/YYYY') AS date,
+  AVG(total) AS average_sales
+FROM orders
+GROUP BY date;
+
+SELECT SUM(total)/COUNT(total) AS total FROM orders;
+
+SELECT * FROM orders;
+
+SELECT MAX(total) AS maximum FROM orders;
+
+SELECT MIN(total) AS maximum FROM orders;
+
+SELECT * FROM products;
+
+SELECT AVG(amount) FROM products;
+
+SELECT name, amount
+FROM products
+WHERE amount < (SELECT AVG(amount) FROM products);
+
+SELECT c.city, SUM(o.total) AS sales_total
+FROM clients c
+INNER JOIN orders o ON o.client_id = c.id
+GROUP BY c.city
+HAVING SUM(o.total) < 3500; 
