@@ -18,5 +18,6 @@ CREATE TABLE orders (
   id SERIAL PRIMARY KEY,
   client_id INT NOT NULL REFERENCES clients(id),
   product_id INT NOT NULL,
-  quantity SMALLINT NOT NULL
+  quantity SMALLINT NOT NULL,
+  FOREIGN KEY (product_id) REFERENCES products(id)
 );
