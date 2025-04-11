@@ -31,6 +31,6 @@ SELECT (SUM(price) / COUNT(*)) AS sum FROM products;
 
 -- AVG
 
-SELECT AVG(price) FROM products;
+SELECT ROUND(AVG(price), 2) FROM products;
 SELECT AVG(quantity) FROM products;
 
