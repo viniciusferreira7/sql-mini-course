@@ -39,3 +39,5 @@ SELECT json_each(order_data) FROM orders;
 SELECT json_each_text(order_data) FROM orders;
 
 SELECT json_object_keys(order_data -> 'products') FROM orders;
+
+DROP TABLE IF EXISTS orders;
