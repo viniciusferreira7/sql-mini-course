@@ -222,3 +222,45 @@ ORDER BY b.publication_year DESC;
 
 SELECT bit_length(first_name), char_length(first_name), length(first_name), lower(first_name), upper(first_name)
 FROM authors;
+
+SELECT OVERLAY(
+        first_name PLACING 'John Doe'
+        from 1 for length(first_name)
+    ) AS "New name"
+FROM authors
+WHERE
+    id = 1;
+
+SELECT title FROM books;
+
+SELECT position('and' in title) FROM books;
+
+SELECT substring( title from 10 ) FROM books;
+
+SELECT substring( title from 2 FOR 5 ) FROM books;
+
+SELECT concat(
+        substring(
+            title
+            from 0 for 1
+        ), upper(
+            substring(
+                title
+                from 2 for 5
+            )
+        ), substring(
+            title
+            from 6
+        )
+    )
+FROM books;
+
+SELECT title FROM books;
+
+SELECT trim( LEADING 'Ha' from title ) FROM books;
+
+SELECT trim( TRAILING '84' from title ) FROM books;
+
+SELECT trim( BOTH 'a' from title ) FROM books;
+
+SELECT trim( BOTH from title ) FROM books;
